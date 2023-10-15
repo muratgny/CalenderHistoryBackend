@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Validations.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,6 +22,8 @@ namespace Business.Concrete
         {
             _castoryDal = castoryDal;
         }
+
+        [ValidationAspect(typeof(CastoryValidator))]
         public IResult Add(Castory castory)
         {
             _castoryDal.Add(castory);
