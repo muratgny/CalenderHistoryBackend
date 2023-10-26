@@ -21,6 +21,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CastoryManager>().As<ICastoryService>().SingleInstance();
             builder.RegisterType<EfCastoryDal>().As<ICastoryDal>().SingleInstance();
 
+            builder.RegisterType<FollowerManager>().As<IFollowerService>().SingleInstance();
+            builder.RegisterType<EfFollowerDal>().As<IFollowerDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

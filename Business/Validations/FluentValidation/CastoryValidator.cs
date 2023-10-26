@@ -14,6 +14,10 @@ namespace Business.Validations.FluentValidation
         public CastoryValidator() 
         {
             RuleFor(p => p.Name).MinimumLength(15).MaximumLength(250);
+            RuleFor(p => p.Name).NotEmpty();
+            RuleFor(p => p.Year).NotEmpty();
+            RuleFor(p => p.UserId).NotEmpty();
+
         }
     }
 }
