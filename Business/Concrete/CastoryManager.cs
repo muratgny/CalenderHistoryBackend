@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.Validations.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -23,6 +24,7 @@ namespace Business.Concrete
             _castoryDal = castoryDal;
         }
 
+        [SecuredOperation("add, admin")]//it is for to check user claim operations for this method. We chacks if the user has the ability to make this operation
         [ValidationAspect(typeof(CastoryValidator))]
         public IResult Add(Castory castory)
         {
