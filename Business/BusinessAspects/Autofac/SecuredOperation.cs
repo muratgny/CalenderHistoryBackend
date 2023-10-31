@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Extensions;
 
 namespace Business.BusinessAspects.Autofac
 {
@@ -25,7 +26,7 @@ namespace Business.BusinessAspects.Autofac
 
         }
 
-        protected override void OnBefore(IInvocation invocation)
+        protected override void OnBefore(IInvocation invocation)//AOP structure OnBeforeMethod
         {
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
             foreach (var role in _roles)
@@ -35,7 +36,7 @@ namespace Business.BusinessAspects.Autofac
                     return;
                 }
             }
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new Exception(Messages.AuthorizationsDenied);
         }
     }
 }
