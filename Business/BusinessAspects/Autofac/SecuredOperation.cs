@@ -13,13 +13,13 @@ using Core.Extensions;
 
 namespace Business.BusinessAspects.Autofac
 {
-    //This class is for JWT
+    //This is an aspect class is for JWT
     public class SecuredOperation : MethodInterception
     {
         private string[] _roles;
         private IHttpContextAccessor _httpContextAccessor;
 
-        public SecuredOperation(string roles)
+        public SecuredOperation(string roles)//this roles come from where we use securedOperation as attribute on top of methods
         {
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
