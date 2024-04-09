@@ -56,7 +56,7 @@ namespace Core.Utilities.Security.JWT
         }
 
 
-        //We put user claims info into JWT Authentication.
+        //We put user claims info into JWT Authentication here
         private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();

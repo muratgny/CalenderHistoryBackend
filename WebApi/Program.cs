@@ -105,6 +105,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//These 2 are needed for authentication
 app.UseAuthentication();
 
 app.UseAuthorization();
