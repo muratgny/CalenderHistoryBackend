@@ -29,10 +29,12 @@ namespace Core.Aspects.Autofac.Caching
             var arguments = invocation.Arguments.ToList();
             var key = $"{methodName}({string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))})";
 
-            //if data is in the cache, go out of this method and take the data from cache
+            //if data is in the cache, go into this method and take the data from cache
             if (_cacheManager.IsAdd(key))
             {
-                invocation.ReturnValue = _cacheManager.Get(key);
+                invocation.ReturnValue = _cacheManager.Get(key);//invocation is our method that we use cache in it.
+                                                                //we assign returnValue to this method. So this method
+                                                                //directly return this value without running other code lines.
                 return;
             }
 

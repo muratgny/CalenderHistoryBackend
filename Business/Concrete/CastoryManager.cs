@@ -27,6 +27,7 @@ namespace Business.Concrete
 
         [SecuredOperation("add, admin")]//it is for to check user claim operations for this method. We chacks if the user has the ability to make this operation
         [ValidationAspect(typeof(CastoryValidator))]
+        [CacheRemoveAspect("ICastoryService.Get")]//Removing just castory items from cache
         public IResult Add(Castory castory)
         {
             _castoryDal.Add(castory);
@@ -34,6 +35,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
+        [CacheRemoveAspect("ICastoryService.Get")]//Removing just castory items from cache
         public IResult Delete(Castory castory)
         {
             _castoryDal.Delete(castory);
@@ -56,6 +58,7 @@ namespace Business.Concrete
             return new SuccessDataResult<IEnumerable<Castory>>(castoryList);
         }
 
+        [CacheRemoveAspect("ICastoryService.Get")]//Removing just castory items from cache
         public IResult Update(Castory castory)
         {
             _castoryDal.Update(castory);
