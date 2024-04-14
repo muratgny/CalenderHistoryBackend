@@ -31,6 +31,14 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 
 builder.Services.AddControllers();
 
+//Configuring and adding ef and sql server here
+builder.Services.AddDbContext<CastoryDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));//we defined defaultConnection in appsetting.json
+
+});
+
+
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -84,11 +92,6 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 
-//Configuring and adding ef and sql server here
-builder.Services.AddDbContext<CastoryDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));//we defined defaultConnection in appsetting.json
-});
 
 
 

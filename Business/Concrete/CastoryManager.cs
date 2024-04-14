@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.Validations.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -40,15 +41,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
+        [CacheAspect]//working cache example
         public async Task<IDataResult<Castory>> GetById(int id)
         {
             var castory = await _castoryDal.GetAsync(p => p.Id == id);
             return new SuccessDataResult<Castory>(castory);
         }
 
+        //[SecuredOperation("admin")]
+        [CacheAspect]
         public async Task<IDataResult<IEnumerable<Castory>>> GetList()
         {
-            var castoryList = await _castoryDal.GetListAsync();
+            var castoryList = _castoryDal.GetList();
             return new SuccessDataResult<IEnumerable<Castory>>(castoryList);
         }
 

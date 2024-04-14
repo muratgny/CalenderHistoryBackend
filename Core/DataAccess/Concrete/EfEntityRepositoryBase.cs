@@ -28,6 +28,12 @@ namespace Core.DataAccess.Concrete
             return SaveChanges() > 0;
         }
 
+        public bool Update(TEntity entity)
+        {
+            Context.Update(entity);
+            return SaveChanges() > 0;
+        }
+
         public bool Delete(TEntity entity)
         {
             Context.Remove(entity);
@@ -98,11 +104,7 @@ namespace Core.DataAccess.Concrete
             return Context.SaveChangesAsync();
         }
 
-        public bool Update(TEntity entity)
-        {
-            Context.Update(entity);
-            return SaveChanges() > 0;
-        }
+        
 
         /// <summary>
         /// We are saving changes automatically with this method.
